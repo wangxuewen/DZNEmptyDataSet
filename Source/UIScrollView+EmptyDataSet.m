@@ -926,7 +926,8 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     [self addConstraint:centerXConstraint];
     [self addConstraint:centerYConstraint];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
-    
+//    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
+
     // When a custom offset is available, we adjust the vertical constraints' constants
     if (self.verticalOffset != 0 && self.constraints.count > 0) {
         centerYConstraint.constant = self.verticalOffset;
@@ -934,6 +935,7 @@ Class dzn_baseClassToSwizzleForTarget(id target)
     
     // If applicable, set the custom view's constraints
     if (_customView) {
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|" options:0 metrics:nil views:@{@"customView":_customView}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[customView]|" options:0 metrics:nil views:@{@"customView":_customView}]];
     }
@@ -1073,3 +1075,4 @@ Class dzn_baseClassToSwizzleForTarget(id target)
 }
 
 @end
+
